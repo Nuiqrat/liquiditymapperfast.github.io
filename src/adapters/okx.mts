@@ -3,7 +3,8 @@ import { AdapterTransportError, epochMs, finiteNumber, requireSymbol, sideLevels
 
 /** OKX public market-data descriptors and pure normalizers. */
 export const OKX_REST_URL = 'https://www.okx.com';
-export const OKX_PUBLIC_WS_URL = 'wss://ws.okx.com:8443/ws/v5/public';
+/** Port 443: OKX retires 8443 (notice 64010, 2026-10); the Tachyon LMF server sat in reconnect backoff on 8443 from 2026-10-27. */
+export const OKX_PUBLIC_WS_URL = 'wss://ws.okx.com/ws/v5/public';
 
 function instId(value: unknown) { return requireSymbol(value).toUpperCase(); }
 export function okxInstrumentId(value: unknown) { return `okx:${instId(value)}`; }
